@@ -1,18 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('One') {
-                steps {
-                        echo 'Hello'
-			
+    	stage('One') {
+        	steps {
+                	echo 'Hello'
                 }
-        }
-	    stage('Two'){
-		    
+        }	    
+	stage('Two') {	    
 		steps {
 			echo 'good'
-        }
-	    }
+        	}
+	}
         stage('Three') {
                 when {
                         not {
@@ -21,10 +19,11 @@ pipeline {
                 }
                 steps {
 			echo "Hello"
-                        }
+		}
         }
-        stage('Four') {
-                parallel {
+  
+	stage('Four') {
+        	parallel {
                         stage('Unit Test') {
                                 steps{
                                         echo "Running the unit test..."
@@ -41,7 +40,8 @@ pipeline {
 					echo 'Running the integration test..'
 				}
                                
-			}  }
+			}
+		}
         }
     }
 }
